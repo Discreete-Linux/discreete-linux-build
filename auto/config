@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+lb config noauto \
+	--bootappend-live "boot=live components locales=en_US.UTF-8 keyboard-layouts=us hostname=discreete username=somebody" \
+	--distribution jessie \
+	--binary-images iso-hybrid \
+	--bootloader syslinux \
+	--checksums sha256 \
+	--debian-installer false \
+	--debian-installer-gui false \
+	"${@}"

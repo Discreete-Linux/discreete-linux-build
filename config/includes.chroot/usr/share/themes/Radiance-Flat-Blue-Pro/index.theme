@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Radiance-Flat-Blue-Pro
+Comment=Radiance Flat, A Redesigned Modern & Flat, Radiance Based Theme W/New Colors By RAVEfinity.com (14.04)
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Radiance-Flat-Blue-Pro
+MetacityTheme=Radiance-Flat-Blue-Pro
+IconTheme=Vibrancy-Light-Blue-Vivid
+CursorTheme=DMZ-White
+ButtonLayout=close,minimize,maximize:

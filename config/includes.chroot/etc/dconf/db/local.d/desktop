@@ -1,0 +1,47 @@
+#dconf keys /org/gnome/desktop
+[org/gnome/desktop/media-handling]
+automount-open=false
+autorun-never=true
+[org/gnome/desktop/background]
+picture-uri='file:///usr/share/backgrounds/upr-bg.jpg'
+picture-options='zoom'
+show-desktop-icons=false
+[org/gnome/desktop/interface]
+menus-have-icons=true
+gtk-theme='Radiance-Flat-Blue-Pro'
+icon-theme='Vibrancy-Light-Blue-Vivid'
+clock-show-date=true
+clock-show-seconds=true
+[org/gnome/shell/calendar]
+show-weekdate=true
+[org/gnome/desktop/privacy]
+remove-old-trash-files=true
+old-files-age=7
+[org/gnome/shell/extensions/user-theme]
+name='Radiance-Flat-Colors'
+[org/gnome/desktop/wm/preferences]
+titlebar-uses-system-font=true
+button-layout='menu:minimize,maximize,close'
+theme='Radiance-Flat-AA-GnomeShell'
+[org/gnome/shell]
+favorite-apps=['libreoffice-writer.desktop', 'nemo.desktop']
+enabled-extensions=['alternative-status-menu@gnome-shell-extensions.gcampax.github.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'window-list@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'gnome-shell-trash-extension', 'gTile@vibou', 'tracker-search-provider@sinnix.de', 'alternate-tab@gnome-shell-extensions.gcampax.github.com']
+[org/nemo/desktop]
+show-desktop-icons=true
+home-icon-visible=true
+trash-icon-visible=true
+volumes-visible=true
+[org/gnome/desktop/session]
+idle-delay=0
+[org/nemo/preferences]
+default-folder-viewer='list-view'
+[org/nemo/window-state]
+side-pane-view='tree'
+[org/gnome/desktop/screensaver]
+lock-enabled=false
+user-switch-enabled=false
+[org/gnome/desktop/lockdown]
+user-administration-disabled=true
+disable-user-switching=true
+[org/gnome/settings-daemon/peripherals/touchpad]
+tap-to-click=true

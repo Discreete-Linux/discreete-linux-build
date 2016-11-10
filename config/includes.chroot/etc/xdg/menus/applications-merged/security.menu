@@ -1,0 +1,15 @@
+<!-- Security -->
+<Menu>
+  <Name>Applications</Name>
+  <Menu>
+    <Name>Security</Name>
+    <Directory>Security.directory</Directory>
+    <Include>
+      <Or>
+        <Category>Security</Category>
+        <Category>Encryption</Category>
+      </Or>
+    </Include>
+  </Menu>
+</Menu>
+<!-- End Security -->

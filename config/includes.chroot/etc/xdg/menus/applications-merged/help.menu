@@ -1,0 +1,15 @@
+<!-- Help -->
+<Menu>
+  <Name>Applications</Name>
+  <Menu>
+    <Name>Help</Name>
+    <Directory>Help.directory</Directory>
+    <Include>
+      <Or>
+        <Category>Documentation</Category>
+        <Category>Help</Category>
+      </Or>
+    </Include>
+  </Menu>
+</Menu>
+<!-- End Help -->

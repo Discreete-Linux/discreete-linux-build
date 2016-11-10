@@ -1,0 +1,20 @@
+#!/bin/sh
+
+if [ ! -d isolinux ]; then
+    cd binary
+fi
+
+cat >>isolinux/live.cfg <<END
+label live-deutsch
+	menu label Live (^amd64 deutsch)
+	linux /live/vmlinuz
+	initrd /live/initrd.img
+	append boot=live components username=somebody hostname=discreete locales=de_DE.UTF-8 keyboard-layouts=de
+
+label live-godmode
+	menu label Live (^amd64 sudo-mode)
+	linux /live/vmlinuz
+	initrd /live/initrd.img
+	append boot=live components username=god hostname=discreete locales=de_DE.UTF-8 keyboard-layouts=de godmode
+END
+

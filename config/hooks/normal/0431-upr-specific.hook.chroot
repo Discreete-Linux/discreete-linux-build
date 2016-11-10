@@ -1,0 +1,48 @@
+#!/bin/sh
+ln -sf /bin/ntfsfix /sbin/fsck.ntfs
+ln -sf /bin/ntfsfix /sbin/fsck.ntfs-3g
+gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults --set /apps/gnome-do/preferences/Do/CorePreferences/QuietStart --type bool true
+rm -f /usr/share/applications/nautilus-autorun-software.desktop
+dpkg-divert --local --add --rename --divert /usr/bin/nautilus.real /usr/bin/nautilus
+ln -sf /usr/bin/nemo /usr/bin/nautilus
+rm /usr/share/applications/gnome-online-accounts-panel.desktop 
+rm /usr/share/applications/gnome-printers-panel.desktop 
+rm /usr/share/applications/gnome-bluetooth-panel.desktop
+rm /usr/share/applications/gnome-sharing-panel.desktop 
+rm -f /usr/share/applications/org.gnome.Nautilus.desktop
+rm -f /usr/share/applications/display-im6.desktop
+rm -f /usr/share/applications/display-im6.q16.desktop
+rm -f /usr/share/applications/eog.desktop
+rm -f /usr/share/applications/gnome-tweak-tool.desktop
+rm -f /usr/share/applications/iceweasel.desktop
+rm -f /usr/share/applications/org.gnome.Totem.desktop
+rm -f /usr/share/applications/org.gnome.Photos.desktop
+rm -f /usr/share/applications/ca.desrt.dconf-editor.desktop
+rm -f /usr/share/applications/gksu.desktop
+rm -f /usr/share/applications/network.desktop
+sed -ri 's%^OnlyShowIn=.*%OnlyShowIn=X-Cinnamon;GNOME;%' /usr/share/applications/nemo-autostart.desktop
+cp /usr/share/applications/nemo-autostart.desktop /etc/xdg/autostart/nemo-autostart.desktop
+cp /usr/share/applications/kde4/okular.desktop /usr/share/applications/
+sed -ri 's/^Categories=.*/Categories=System;/' /usr/share/applications/system-config-printer.desktop
+sed -ri 's/^Categories=.*/Categories=Office;/' /usr/share/applications/libreoffice-math.desktop
+sed -ri 's/^Categories=.*/Categories=AudioVideo;/' /usr/share/applications/firefox-esr.desktop
+sed -ri 's/^Categories=.*/Categories=AudioVideo;/' /usr/share/applications/iceweasel.desktop
+sed -ri 's%^inode/directory=.*%inode/directory=nemo.desktop%' /etc/gnome/defaults.list
+sed -ri 's%^application/x-gnome-saved-search=.*%application/x-gnome-saved-search=nemo.desktop%' /etc/gnome/defaults.list
+sed -ri 's%#NAutoVTs=.*%NAutoVTs=0%' /etc/systemd/logind.conf
+sed -ri 's%#ReserveVT=.*%ReserveVT=0' /etc/systemd/logind.conf
+sed -ri 's/Categories=GTK;Utility;/Categories=GTK;Security;/' /usr/share/applications/fpm2.desktop
+echo "kernel.sysrq = 176" > /etc/sysctl.conf.d/999-dsctl.conf
+for size in 96 64 48 32 24 22 16; do
+  convert /usr/share/pixmaps/fpm2/logo.png -scale ${size}x${size} /usr/share/icons/gnome/${size}x${size}/apps/fpm2.png
+done
+apt-get -y purge apache2-bin avahi-daemon libnss-mdns telepathy-salut bluez gnome-bluetooth bluez-obexd bogofilter bogofilter-bdb bogofilter-common bsd-mailx empathy \
+empathy-common exim4-base exim4-config exim4-daemon-light freerdp-x11 isc-dhcp-client network-manager network-manager-gnome ifupdown isc-dhcp-common libpurple-bin \
+libpurple0 pidgin-data telepathy-haze polari telepathy-gabble telepathy-idle telepathy-logger telepathy-rakia ppp transmission-common transmission-gtk vinagre \
+vino wpasupplicant libavahi-ui-gtk3-0
+systemctl enable memlockd
+dconf update
+exit 0
+
+
+

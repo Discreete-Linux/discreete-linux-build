@@ -1,0 +1,12 @@
+dsctl-detect-media-removal
+dsctl-log-collector
+dsctl-logwatcher
+dsctl-virt-detect
+extended-volume-manager
+gnupg-scripts
+truecrypt-helper
+pwdfile-editor
+nemo-fslabel
+nemo-fscheck
+nemo-print
+usb-imagewriter-ng

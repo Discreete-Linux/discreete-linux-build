@@ -1,0 +1,167 @@
+# Based on Ambiance Openbox Theme By: David Barr (C) 2010 GPL. (http://david.chalkskeletons.com/)
+# Ambiance Flat Openbox Theme, Fixes and code by RAVEfinity (Jared Sot.) (C)2012-2014
+# Updated* for latest Ambiance theme and maintained by RAVEfinity as Ambiance Flat Colors. & New Button code by Benoit.
+
+!# General
+padding.width: 4
+padding.height: 3
+#maybe we need a bit of this?!
+window.handle.width:0
+border.Width: 1
+#hmm
+window.client.padding.width: 0
+window.client.padding.height: 0
+menu.overlap: 2
+window.frameColor: #353535
+window.*.client.color: #353535
+*.text.justify: center
+
+!# Set *all* fonts here
+
+menu.items.font:shadow=y:shadowtint=0:shadowoffset=2
+window.active.label.text.font:shadow=y:shadowtint=25:shadowoffset=1
+window.inactive.label.text.font:shadow=y:shadowtint=0:shadowoffset=1
+osd.label.text.font:shadow=y:shadowtint=-20:shadowoffset=1
+
+!# just no bevel, right?
+*.bg.highlight: 0
+*.bg.shadow:    0
+
+window.*.bg.highlight: 15
+window.*.bg.shadow:    05
+
+window.active.title.bg.highlight: 20
+window.active.title.bg.shadow:    0
+
+window.inactive.title.bg.highlight: 10
+window.inactive.title.bg.shadow:    00
+
+window.*.grip.bg.highlight: 30
+window.*.grip.bg.shadow:    20
+
+window.*.handle.bg.highlight: 30
+window.*.handle.bg.shadow:    20
+
+window.inactive.grip.bg.highlight: 20
+window.inactive.grip.bg.shadow:    10
+
+window.inactive.handle.bg.highlight: 10
+window.inactive.handle.bg.shadow:    10
+
+osd.*.bg.highlight: 30
+osd.*.bg.shadow:    10
+
+!# The main theme stuff now we are ready
+
+!# Menu
+
+!# this matches the gtk them, that is all.
+menu.border.color: #C9C9C9
+menu.border.width: 1
+
+!# maybe you don't like that this is not the same as the main active title?? 
+menu.title.bg: flat border vertical gradient
+menu.title.bg.color: #FFFFFF
+menu.title.bg.colorTo: #FFFFFF
+
+menu.title.text.color: #3E3E3E
+menu.title.bg.border.color: #FFFFFF
+
+menu.items.bg: flat solid
+menu.items.bg.color: #FFFFFF
+menu.items.text.color: #3E3E3E
+menu.items.disabled.text.color: #797979
+ 
+menu.items.active.bg: flat border gradient splitvertical
+menu.items.active.bg.color: #3E3E3E
+menu.items.active.bg.color.splitTo: #3E3E3E
+menu.items.active.bg.colorTo: #3E3E3E
+menu.items.active.bg.colorTo.splitTo: #3E3E3E
+menu.items.active.bg.border.color: #3E3E3E
+menu.items.active.text.color: #FFFFFF
+
+menu.separator.width: 1
+menu.separator.padding.width: 3
+menu.separator.padding.height: 3
+menu.separator.color: #C9C9C9
+
+
+!# Active Windows.
+
+window.*.border.color: #919191
+window.*.title.separator.color: #E8E8E8
+
+window.inactive.title.separator.color: #E8E8E8
+
+window.*.title.bg: raised splitvertical gradient
+window.*.title.bg.color: #E8E8E8
+window.*.title.bg.color.splitTo: #E8E8E8
+window.*.title.bg.colorTo: #E8E8E8
+window.*.title.bg.colorTo.splitTo: #E8E8E8
+window.*.label.bg: parentrelative
+window.*.label.text.color: #4D4D4D
+
+window.active.button.*.bg: rasied gradient vertical bevel1
+window.active.button.*.bg.color: #545454
+window.active.button.*.bg.colorTo: #545454
+window.active.button.*.pressed.bg.color: #4C4C4C
+window.active.button.*.pressed.bg.colorTo: #4C4C4C
+window.active.button.*.image.color: #FFFFFF
+
+window.active.button.*.hover.bg: raised rounded gradient
+window.active.button.*.hover.bg.color: #5D5D5D
+window.active.button.*.hover.bg.colorTo: #5D5D5D
+
+window.active.button.disabled.image.color: #3C3C3C
+window.active.button.disabled.bg.color: #5C5C5C
+window.active.button.disabled.bg.colorTo: #454545
+
+window.active.handle.bg: flat solid
+window.active.handle.bg.color:  #3C3C3C
+window.active.grip.bg: flat solid
+window.active.grip.bg.color:  #3C3C3C
+
+!# Inactive
+window.inactive.border.color: #AAAAAA
+
+!## Hmmm we need an alternative...
+
+window.inactive.title.bg.color.splitTo: #E8E8E8
+window.inactive.label.text.color: #707070
+window.inactive.button.*.bg: raised solid
+window.inactive.button.*.bg.color: #D0D0D0
+window.inactive.button.*.bg.colorTo: #D0D0D0
+window.inactive.button.*.border.color: #BABABA
+window.inactive.button.pressed.image.color: #6C6C6C
+window.inactive.button.*.image.color: #3A3A3A
+
+#window.inactive.button.hover.image.color: #ffffff
+
+window.inactive.button.disabled.image.color: #656565
+
+window.inactive.handle.bg: flat solid
+window.inactive.handle.bg.color: #444444
+window.*.grip.bg: parentrelative
+
+!# osd (On Screen Display)
+
+osd.border.width: 1
+osd.border.color:  #CCCCCC
+
+osd.bg: raised solid
+osd.bg.color: #F2F2F2
+osd.bg.border.color: #CCCCCC
+
+osd.label.bg: parentrelative
+osd.label.bg.color: #efefef
+osd.label.bg.border.color: #9E9E9E
+
+osd.label.text.color: #333333
+!# Misc But Keep.
+osd.hilight.bg: flat solid 
+osd.hilight.bg.color: #D1E1E8
+
+osd.unhilight.bg: flat solid
+osd.unhilight.bg.color: #E3E3E0
+
+

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+NAME=$(basename $PWD)
+
+zip -r $NAME.zip * -x .git* *.zip
+
