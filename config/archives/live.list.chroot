@@ -2,5 +2,3 @@ deb http://ftp.de.debian.org/debian jessie main contrib non-free
 deb http://ftp.de.debian.org/debian jessie-updates main contrib non-free
 deb http://ftp.de.debian.org/debian jessie-backports main contrib non-free
 deb http://security.debian.org/ jessie/updates main contrib non-free
-deb http://download.virtualbox.org/virtualbox/debian jessie contrib
-deb [trusted=yes] http://www.discreete-linux.org/repository jessie main

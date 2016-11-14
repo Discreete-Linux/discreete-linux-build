@@ -10,4 +10,7 @@ lb config noauto \
 	--checksums sha256 \
 	--debian-installer false \
 	--debian-installer-gui false \
+	--debootstrap-options "--include=apt-transport-https,ca-certificates,openssl" \
+	--linux-flavours amd64-unsigned \
+	--linux-packages linux-image-4.7.0-dsctl1 \
 	"${@}"
