@@ -61,7 +61,19 @@ const TrackerSearchProvider = new Lang.Class({
     },
 
     _getQuery : function (terms, filetype) {
-        var query = "";
+        var select = 'SELECT'
+                        + ' ?urn nie:url(?urn)'
+                        + '     tracker:coalesce(nie:title(?urn), nfo:fileName(?urn), "unknown name")'
+                        + '     nie:url(?parent)'
+                        + '     nfo:fileLastModified(?urn) ';
+
+        var where = '';
+
+        var order = ' ORDER BY'
+                        + ' DESC(nfo:fileLastModified(?urn))'
+                        + ' ASC(nie:title(?urn)) '
+                        + ' DESC(nie:contentCreated(?urn))'
+                        + ' OFFSET 0 LIMIT ' + String(MAX_RESULTS);
 
         if (this._categoryType == CategoryType.FTS) {
             var terms_in_sparql = "";
@@ -70,29 +82,46 @@ const TrackerSearchProvider = new Lang.Class({
                 if (terms_in_sparql.length > 0) terms_in_sparql += " ";
                 terms_in_sparql += terms[i] + "*";
             }
-            // Technically, the tag should really be matched
-            // separately not as one phrase too.
-            query += "SELECT ?urn nie:url(?urn) tracker:coalesce(nie:title(?urn), nfo:fileName(?urn)) nie:url(?parent) nfo:fileLastModified(?urn) WHERE { { ";
-            if (filetype)
-                query += " ?urn a nfo:" + filetype + " .";
-            else
-                query += " ?urn a nfo:FileDataObject .";
-            query += " ?urn fts:match \"" + terms_in_sparql + "\" } UNION { ?urn nao:hasTag ?tag . FILTER (fn:contains (fn:lower-case (nao:prefLabel(?tag)), \"" + terms + "\")) }";
-            query += " OPTIONAL { ?urn nfo:belongsToContainer ?parent .  ?r2 a nfo:Folder . FILTER(?r2 = ?urn). } . FILTER(!BOUND(?r2)). } ORDER BY DESC(nfo:fileLastModified(?urn)) ASC(nie:title(?urn)) OFFSET 0 LIMIT " + String(MAX_RESULTS);
-            //  ?r2 a nfo:Folder . FILTER(?r2 = ?urn). } . FILTER(!BOUND(?r2) is supposed to filter out folders, but this fails for 'root' folders in which is indexed (as 'Music', 'Documents' and so on ..) - WHY?
+
+            /* TODO:
+             *  Technically, the tag should really be matched
+             *  separately not as one phrase too.
+             */
+            var nfoFileType = filetype ? filetype : 'FileDataObject';
+
+            where = ' WHERE {'
+                        + '{ ?urn a nfo:' + nfoFileType + ' .'
+                        + ' ?urn fts:match "' + terms_in_sparql + '" }'
+                        + ' UNION '
+                        + '{ ?urn nao:hasTag ?tag . '
+                            + 'FILTER (fn:contains (fn:lower-case (nao:prefLabel(?tag)), "' + terms + '")) }'
+                            + ' OPTIONAL {'
+                                + ' ?urn nfo:belongsToContainer ?parent .'
+                                + ' ?r2 a nfo:Folder .'
+                                + ' FILTER(?r2 = ?urn) .} .'
+
+                        + ' FILTER(!BOUND(?r2)) .'
+                        + '}';
+
+            /* TODO:
+             *  ?r2 a nfo:Folder . FILTER(?r2 = ?urn). } . FILTER(!BOUND(?r2)
+             *  is supposed to filter out folders, but this fails for 'root'
+             *  folders in which is indexed (as 'Music', 'Documents' and
+             *  so on ...) - WHY?
+             */
 
         } else if (this._categoryType == CategoryType.FILES) {
             // TODO: Do we really want this?
         } else if (this._categoryType == CategoryType.FOLDERS) {
-            query += "SELECT ?urn nie:url(?urn) tracker:coalesce(nie:title(?urn), nfo:fileName(?urn)) nie:url(?parent) nfo:fileLastModified(?urn) WHERE {";
-            query += "  ?urn a nfo:Folder .";
-            query += "  FILTER (fn:contains (fn:lower-case (nfo:fileName(?urn)), '" + terms + "')) .";
-            query += "  ?urn nfo:belongsToContainer ?parent ;";
-            query += "  tracker:available true .";
-            query += "} ORDER BY DESC(nfo:fileLastModified(?urn)) DESC(nie:contentCreated(?urn)) ASC(nie:title(?urn)) OFFSET 0 LIMIT " + String(MAX_RESULTS);
+            where = ' WHERE {'
+                        + ' ?urn a nfo:Folder .'
+                        + ' FILTER (fn:contains (fn:lower-case (nfo:fileName(?urn)), "' + terms + '")) .'
+                        + ' ?urn nfo:belongsToContainer ?parent ;'
+                        + ' tracker:available true .'
+                        + '}';
         }
 
-        return query;
+        return select + where + order;
     },
 
     _getResultMeta : function(resultId) {
@@ -241,7 +270,7 @@ const TrackerSearchProvider = new Lang.Class({
     },
 
     filterResults : function(results, max) {
-        return results.slice(0, 5);
+        return results.slice(0, MAX_RESULTS);
     },
 
     launchSearch: function(terms) {

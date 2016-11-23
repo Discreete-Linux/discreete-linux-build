@@ -3,7 +3,7 @@
 set -e
 
 lb config noauto \
-	--bootappend-live "boot=live components locales=en_US.UTF-8 keyboard-layouts=us hostname=discreete username=somebody" \
+	--bootappend-live "boot=live components hostname=discreete username=somebody quiet splash" \
 	--distribution jessie \
 	--binary-images iso-hybrid \
 	--bootloader syslinux \
@@ -13,4 +13,7 @@ lb config noauto \
 	--debootstrap-options "--include=apt-transport-https,ca-certificates,openssl" \
 	--linux-flavours amd64-unsigned \
 	--linux-packages linux-image-4.7.0-dsctl1 \
+	--iso-volume Discreete-Linux_2016.01 \
+	--iso-publisher "Discreete Linux Team" \
+	--firmware-chroot true \
 	"${@}"

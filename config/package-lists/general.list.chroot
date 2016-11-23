@@ -48,6 +48,7 @@ nemo-data/jessie-backports
 pavucontrol
 gdm3
 plymouth
+plymouth-themes
 system-config-printer
 exfat-fuse/jessie-backports
 #libavcodec-extra/jessie-backports
@@ -55,6 +56,7 @@ exfat-fuse/jessie-backports
 #libx265-79/jessie-backports
 gstreamer1.0-libav
 gstreamer1.0-plugins-ugly
+gstreamer1.0-plugins-bad
 totem-plugins
 zip
 ntfs-3g
@@ -103,3 +105,5 @@ planner
 gthumb
 fpm2
 virtualbox-5.1
+grsync
+bookletimposer
