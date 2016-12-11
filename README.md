@@ -25,11 +25,37 @@ First off, you will need to get our customized version of live-build from
 or build it from git sources [here](https://github.com/Discreete-Linux/live-build). This version supports
 UEFI booting, see the README for more details.
 
+Then you need our PGP key which we use for signing. It is called "Discreete Linux signing key (2016) <info@discreete-linux.org>" and has the Key-ID 0x759613AC. You can retrieve it from any keyserver of the PGP keyserver network, like [here](https://pgp.mit.edu/pks/lookup?op=get&search=0xBA146BB0759613AC).
+
+### A Note about our PGP keys
+
+In addition to the signing key, there are two other keys of the Discreete Linux team:
+
+1. "Discreete Linux communication key (2016) <info@discreete-linux.org>", Key-ID 0xDBAFE0E2
+2. "Discreete Linux automated signing key (2016-11) <info@discreete-linux.org>", Key-ID 0x751FCD02
+
+Why do we do this? The signing key is used for signing releases, repositories etc. only; the secret key is on a separate keyring on a separate, permanently offline machine which is only used for that purpose. The communication key is also only used offline in a Discreete environment, but the secret key, by it's nature, is in a keyring which we use on a daily basis. The automated signing key is used for signing individual packages and changelog entries, github commits etc. These are automated processes, the key resides on an online system.
+
 ## Building Discreete Linux
 
-Download the config tree, cd to it and run:
+Download/checkout the config tree:
+
+`git clone https://github.com/Discreete-Linux/discreete-linux-build.git`
+
+cd to it and verify the signature of the checksum file:
+
+`gpg --verify SHA512SUM.asc SHA512SUM`
+
+Then verify the checksums:
+
+`sha512sum -c SHA512SUM`
+
+Now, just to be sure, run:
+
 `lb clean`
+
 as root, followed by
+
 `lb build`
 
 Building will take some time, depending on your machine and internet connection. At the end, you should get a file named
@@ -40,11 +66,14 @@ Be **very** careful what you type for /dev/sdX, you can overwrite your hard driv
 
 ## Building VeraCrypt from Source
 
-1. Get VeraCrypt Linux Sources and the signature from https://veracrypt.codeplex.com/ and be sure to verify the signature!
-2. Unpack the sources
-3. Install build requirements with
+For verifying the Veracrypt sources, you need the PGP key called "VeraCrypt Team <veracrypt@idrix.fr>" with Key-ID 0x54DDD393.
+
+1. Get VeraCrypt Linux Sources and the signature from https://veracrypt.codeplex.com/
+2. Verify the signature like `gpg --verify VeraCrypt_1.19_Source.tar.gz.sig VeraCrypt_1.19_Source.tar.gz`
+3. Unpack the sources
+4. Install build requirements with
 `apt-get install make gcc g++ nasm libfuse-dev makeself libwxgtk3.0-dev pkg-config`
-4. `cd` to the source dir and run `make`
+5. `cd` to the source dir and run `make`
 
 ## Building the kernel image
 
