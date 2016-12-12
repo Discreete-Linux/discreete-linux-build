@@ -21,7 +21,7 @@ we do *not* include any sources or git repo for this kernel image. Instead we te
 ## Requirements
 
 First off, you will need to get our customized version of live-build from 
-[here](https://www.discreete-linux.org/repository/pool/main/l/live-build/live-build_20161103dsctl1_all.deb)
+[here](https://www.discreete-linux.org/repository/pool/main/l/live-build/live-build_20160105dsctl1_all.deb)
 or build it from git sources [here](https://github.com/Discreete-Linux/live-build). This version supports
 UEFI booting, see the README for more details.
 
