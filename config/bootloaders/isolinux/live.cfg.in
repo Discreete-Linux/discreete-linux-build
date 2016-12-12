@@ -1,24 +1,60 @@
 label live-@FLAVOUR@
-	menu label ^Live (amd64)
+	menu label Discreete Linux (english)
 	menu default
 	linux @LINUX@
 	initrd @INITRD@
 	append @APPEND_LIVE@ locales=en_US.UTF-8 keyboard-layouts=us 
 
 label live-@FLAVOUR@-failsafe
-	menu label ^Live (amd64 failsafe)
+	menu label Discreete Linux (english failsafe)
 	linux @LINUX@
 	initrd @INITRD@
 	append @APPEND_LIVE_FAILSAFE@ locales=en_US.UTF-8 keyboard-layouts=us
 
 label live-deutsch
-        menu label Live (^amd64 deutsch)
+        menu label Discreete Linux (deutsch)
         linux @LINUX@ 
         initrd @INITRD@ 
         append @APPEND_LIVE@ locales=de_DE.UTF-8 keyboard-layouts=de
 
+label live-deutsch-failsafe
+        menu label Discreete Linux (deutsch failsafe)
+        linux @LINUX@ 
+        initrd @INITRD@ 
+        append @APPEND_LIVE_FAILSAFE@ locales=de_DE.UTF-8 keyboard-layouts=de
+
+label live-Turkish
+        menu label Discreete Linux (turkish)
+        linux @LINUX@ 
+        initrd @INITRD@ 
+        append @APPEND_LIVE@ locales=tr_TR.UTF-8 keyboard-layouts=tr
+
+label live-turkish-failsafe
+        menu label Discreete Linux (turkish failsafe)
+        linux @LINUX@ 
+        initrd @INITRD@ 
+        append @APPEND_LIVE_FAILSAFE@ locales=tr_TR.UTF-8 keyboard-layouts=tr
+
+label live-kurdish
+        menu label Discreete Linux (kurdish)
+        linux @LINUX@ 
+        initrd @INITRD@ 
+        append @APPEND_LIVE@ locales=ku_KU.UTF-8 keyboard-layouts=ku
+
+label live-kurdish-failsafe
+        menu label Discreete Linux (kurdish failsafe)
+        linux @LINUX@ 
+        initrd @INITRD@ 
+        append @APPEND_LIVE_FAILSAFE@ locales=ku_KU.UTF-8 keyboard-layouts=ku
+
+label live-@FLAVOUR@
+	menu label ^Check media for defects
+	linux @LINUX@
+	initrd @INITRD@
+	append boot=live verify-checksums noprompt locales=en_US.UTF-8 keyboard-layouts=us 
+
 label live-godmode
-        menu label Live (^amd64 sudo-mode)
+        menu label Run Discreete as Root (Attention! Read manual first)
         linux @LINUX@ 
         initrd @INITRD@ 
         append boot=live components username=god hostname=discreete locales=de_DE.UTF-8 keyboard-layouts=de godmode

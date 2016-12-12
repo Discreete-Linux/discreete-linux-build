@@ -5,10 +5,12 @@ gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.defaults
 rm -f /usr/share/applications/nautilus-autorun-software.desktop
 dpkg-divert --local --add --rename --divert /usr/bin/nautilus.real /usr/bin/nautilus
 ln -sf /usr/bin/nemo /usr/bin/nautilus
-rm /usr/share/applications/gnome-online-accounts-panel.desktop 
-rm /usr/share/applications/gnome-printers-panel.desktop 
-rm /usr/share/applications/gnome-bluetooth-panel.desktop
-rm /usr/share/applications/gnome-sharing-panel.desktop 
+rm -f /usr/share/applications/gnome-online-accounts-panel.desktop 
+rm -f /usr/share/applications/gnome-printers-panel.desktop 
+rm -f /usr/share/applications/gnome-user-accounts-panel.desktop 
+rm -f /usr/share/applications/gnome-network-panel.desktop
+rm -f /usr/share/applications/gnome-bluetooth-panel.desktop
+rm -f /usr/share/applications/gnome-sharing-panel.desktop 
 rm -f /usr/share/applications/org.gnome.Nautilus.desktop
 rm -f /usr/share/applications/display-im6.desktop
 rm -f /usr/share/applications/display-im6.q16.desktop
@@ -21,6 +23,7 @@ rm -f /usr/share/applications/ca.desrt.dconf-editor.desktop
 rm -f /usr/share/applications/gksu.desktop
 rm -f /usr/share/applications/network.desktop
 rm -f /usr/share/applications/services.desktop
+rm -f /usr/share/applications/users.desktop
 sed -ri 's%^OnlyShowIn=.*%OnlyShowIn=X-Cinnamon;GNOME;%' /usr/share/applications/nemo-autostart.desktop
 cp /usr/share/applications/nemo-autostart.desktop /etc/xdg/autostart/nemo-autostart.desktop
 cp /usr/share/applications/kde4/okular.desktop /usr/share/applications/
@@ -30,10 +33,20 @@ sed -ri 's/^Categories=.*/Categories=AudioVideo;/' /usr/share/applications/firef
 sed -ri 's/^Categories=.*/Categories=AudioVideo;/' /usr/share/applications/iceweasel.desktop
 sed -ri 's%^inode/directory=.*%inode/directory=nemo.desktop%' /etc/gnome/defaults.list
 sed -ri 's%^application/x-gnome-saved-search=.*%application/x-gnome-saved-search=nemo.desktop%' /etc/gnome/defaults.list
+sed -ri 's%application/pdf=evince.desktop%application/pdf=kde4-okularApplication_pdf.desktop%' /etc/gnome/defaults.list
+sed -ri 's%application/x-gzpdf=evince.desktop%application/pdf=kde4-okularApplication_pdf.desktop%' /etc/gnome/defaults.list
+sed -ri 's%application/x-bzpdf=evince.desktop%application/pdf=kde4-okularApplication_pdf.desktop%' /etc/gnome/defaults.list
+sed -ri 's%application/postscript=evince.desktop%application/postscript=kde4-okularApplication_ghostview.desktop%' /etc/gnome/defaults.list
+sed -ri 's%application/x-gzpostscript=evince.desktop%application/x-gzpostscript=kde4-okularApplication_ghostview.desktop%' /etc/gnome/defaults.list
+sed -ri 's%application/x-eps=evince.desktop%application/x-eps=kde4-okularApplication_ghostview.desktop%' /etc/gnome/defaults.list
+sed -ri 's%application/x-bzpostscript=evince.desktop%application/x-bzpostscript=kde4-okularApplication_ghostview.desktop%' /etc/gnome/defaults.list
+sed -ri 's%application/x-bzeps=evince.desktop%application/x-bzeps=kde4-okularApplication_ghostview.desktop%' /etc/gnome/defaults.list
 sed -ri 's%#NAutoVTs=.*%NAutoVTs=0%' /etc/systemd/logind.conf
-sed -ri 's%#ReserveVT=.*%ReserveVT=0' /etc/systemd/logind.conf
+sed -ri 's%#ReserveVT=.*%ReserveVT=0%' /etc/systemd/logind.conf
 sed -ri 's/Categories=GTK;Utility;/Categories=GTK;Security;/' /usr/share/applications/fpm2.desktop
 sed -ri '/system-config-printer.desktop/d' /etc/xdg/menus/gnome-applications.menu
+echo "application/oxps=kde4-okularApplication_xps.desktop" >> /etc/gnome/defaults.list
+echo "application/vnd.ms-xpsdocument=kde4-okularApplication_xps.desktop" >> /etc/gnome/defaults.list
 echo "kernel.sysrq = 176" > /etc/sysctl.conf.d/999-dsctl.conf
 for size in 96 64 48 32 24 22 16; do
   convert /usr/share/pixmaps/fpm2/logo.png -scale ${size}x${size} /usr/share/icons/gnome/${size}x${size}/apps/fpm2.png
@@ -48,10 +61,12 @@ gnome-dictionary gnome-nettool
 apt-get -y autoremove
 systemctl enable memlockd
 systemctl enable dsctl-detect-media-removal
-systemctl enable dsctl-virt-detect 
+systemctl enable dsctl-virt-detect
+systemctl enable dsctl-emmc-disabler
+systemctl disable smartd
+systemctl mask getty@.service
+systemctl disable getty@tty1.service
+chmod -x /sbin/getty
 dconf update
 plymouth-set-default-theme spinner 
 exit 0
-
-
-

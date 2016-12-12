@@ -6,7 +6,7 @@ lb config noauto \
 	--bootappend-live "boot=live components hostname=discreete username=somebody quiet splash" \
 	--distribution jessie \
 	--binary-images iso-hybrid \
-	--bootloader syslinux \
+	--bootloader syslinux,grub-efi \
 	--checksums sha256 \
 	--debian-installer false \
 	--debian-installer-gui false \

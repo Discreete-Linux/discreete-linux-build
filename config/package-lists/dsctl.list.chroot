@@ -2,6 +2,7 @@ dsctl-detect-media-removal
 dsctl-log-collector
 dsctl-logwatcher
 dsctl-virt-detect
+dsctl-emmc-disabler
 extended-volume-manager
 gnupg-scripts
 truecrypt-helper
@@ -10,3 +11,4 @@ nemo-fslabel
 nemo-fscheck
 nemo-print
 usb-imagewriter-ng
+linux-headers-4.7.0-dsctl1-amd64

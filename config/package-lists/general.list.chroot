@@ -104,6 +104,8 @@ kmymoney
 planner
 gthumb
 fpm2
-virtualbox-5.1
+virtualbox-qt/jessie-backports
+virtualbox-dkms/jessie-backports
+virtualbox-guest-additions-iso/jessie-backports
 grsync
 bookletimposer

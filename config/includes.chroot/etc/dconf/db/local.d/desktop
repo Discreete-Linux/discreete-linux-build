@@ -43,5 +43,7 @@ user-switch-enabled=false
 [org/gnome/desktop/lockdown]
 user-administration-disabled=true
 disable-user-switching=true
+[org/gnome/settings-daemon/plugins/power]
+button-power='interactive'
 [org/gnome/settings-daemon/peripherals/touchpad]
 tap-to-click=true
