@@ -25,14 +25,14 @@ First off, you will need to get our customized version of live-build from
 or build it from git sources [here](https://github.com/Discreete-Linux/live-build). This version supports
 UEFI booting, see the README for more details.
 
-Then you need our PGP key which we use for signing. It is called "Discreete Linux signing key (2016) <info@discreete-linux.org>" and has the Key-ID 0x759613AC. You can retrieve it from any keyserver of the PGP keyserver network, like [here](https://pgp.mit.edu/pks/lookup?op=get&search=0xBA146BB0759613AC).
-
+Then you need our PGP key which we use for signing. It is called "Discreete Linux signing key (2016) <info@discreete-linux.org>" and has the Key-ID 0xBA146BB0759613AC. You can retrieve it from any keyserver of the PGP keyserver network, like [here](https://pgp.mit.edu/pks/lookup?op=get&search=0xBA146BB0759613AC). Please verify the fingerprint of the key, it should be:
+`66EC DC50 8027 3FDE E705 9071 BA14 6BB0 7596 13AC`
 ### A Note about our PGP keys
 
 In addition to the signing key, there are two other keys of the Discreete Linux team:
 
-1. "Discreete Linux communication key (2016) <info@discreete-linux.org>", Key-ID 0xDBAFE0E2
-2. "Discreete Linux automated signing key (2016-11) <info@discreete-linux.org>", Key-ID 0x751FCD02
+1. "Discreete Linux communication key (2016) <info@discreete-linux.org>", Key-ID 0xCCA41CE3DBAFE0E2, Fingerprint `FFD8 8A62 59BC 7E8C 3B73 2EB CCA4 1CE3 DBAF E0E2`
+2. "Discreete Linux automated signing key (2016-11) <info@discreete-linux.org>", Key-ID 0x9F11A473751FCD02, Fingerprint `C44F 6A9D 8C5F DC3A 1292 B8C 9F11 A473 751F CD02`
 
 Why do we do this? The signing key is used for signing releases, repositories etc. only; the secret key is on a separate keyring on a separate, permanently offline machine which is only used for that purpose. The communication key is also only used offline in a Discreete environment, but the secret key, by it's nature, is in a keyring which we use on a daily basis. The automated signing key is used for signing individual packages and changelog entries, github commits etc. These are automated processes, the key resides on an online system.
 
@@ -66,7 +66,7 @@ Be **very** careful what you type for /dev/sdX, you can overwrite your hard driv
 
 ## Building VeraCrypt from Source
 
-For verifying the Veracrypt sources, you need the PGP key called "VeraCrypt Team <veracrypt@idrix.fr>" with Key-ID 0x54DDD393.
+For verifying the Veracrypt sources, you need the PGP key called "VeraCrypt Team <veracrypt@idrix.fr>" with Key-ID 0xEB559C7C54DDD393.
 
 1. Get VeraCrypt Linux Sources and the signature from https://veracrypt.codeplex.com/
 2. Verify the signature like `gpg --verify VeraCrypt_1.19_Source.tar.gz.sig VeraCrypt_1.19_Source.tar.gz`
