@@ -40,7 +40,7 @@ Why do we do this? The signing key is used for signing releases, repositories et
 
 Download/checkout the config tree:
 
-`git clone https://github.com/Discreete-Linux/discreete-linux-build.git`
+`git clone --branch v2016.01-beta1 https://github.com/Discreete-Linux/discreete-linux-build.git`
 
 cd to it and verify the signature of the checksum file:
 
